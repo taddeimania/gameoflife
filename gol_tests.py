@@ -10,10 +10,15 @@ class LifeNodeTest(unittest.TestCase):
         node = gol.LifeNode()
         self.assertIn(node.lifestate, lifestates)
 
-    def test_life_node_returns_str_representation(self):
+    def test_life_node_returns_blank_space_if_dead(self):
         node = gol.LifeNode()
         node.lifestate = 0
         self.assertEqual(" ", str(node))
+
+    def test_life_node_returns_X_if_alive(self):
+        node = gol.LifeNode()
+        node.lifestate = 1
+        self.assertEqual("X", str(node))
 
 class CreateBoardTest(unittest.TestCase):
 
@@ -36,7 +41,7 @@ class CreateBoardTest(unittest.TestCase):
         new_board = gol.CreateBoard(3)
         new_board.iterate_board()
         self.assertEqual(2, copy_board.call_count)
-        
+
     @unittest.skip(True)
     @mock.patch('gol.CreateBoard.check_neighbors')
     def test_iterate_board_calls_check_neighbors(self, check_neighbors):
