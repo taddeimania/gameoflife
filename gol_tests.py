@@ -36,10 +36,11 @@ class CreateBoardTest(unittest.TestCase):
         new_board = gol.CreateBoard(3)
         new_board.iterate_board()
         self.assertEqual(2, copy_board.call_count)
-
+        
+    @unittest.skip(True)
     @mock.patch('gol.CreateBoard.check_neighbors')
     def test_iterate_board_calls_check_neighbors(self, check_neighbors):
-        
+        pass
 
     @unittest.skip(True)
     @mock.patch('gol.CreateBoard.count_neighbors')
