@@ -64,21 +64,38 @@ class CreateBoard():
         if loc[0] > 0:
             if loc[1] > 0:
                 neighbor_count += self.BOARD[loc[0] - 1][loc[1] - 1].lifestate
+            elif loc[1] == 0:
+                neighbor_count += self.BOARD[loc[0] - 1][high_bound].lifestate
+
             neighbor_count += self.BOARD[loc[0] - 1][loc[1]].lifestate
+
             if loc[1] < high_bound:
                 neighbor_count += self.BOARD[loc[0] - 1][loc[1] + 1].lifestate
+            elif loc[1] == high_bound:
+                neighbor_count += self.BOARD[loc[0] - 1][0].lifestate
 
         if loc[1] > 0:
             neighbor_count += self.BOARD[loc[0]][loc[1] - 1].lifestate
+        elif loc[1] == 0:
+            neighbor_count += self.BOARD[loc[0]][high_bound].lifestate
+
         if loc[1] < high_bound:
             neighbor_count += self.BOARD[loc[0]][loc[1] + 1].lifestate
+        elif loc[1] == high_bound:
+            neighbor_count += self.BOARD[loc[0]][0].lifestate
 
         if loc[0] < high_bound:
             if loc[1] > 0:
                 neighbor_count += self.BOARD[loc[0] + 1][loc[1] - 1].lifestate
+            elif loc[1] == 0:
+                neighbor_count += self.BOARD[loc[0] + 1][high_bound].lifestate
+
             neighbor_count += self.BOARD[loc[0] + 1][loc[1]].lifestate
+
             if loc[1] < high_bound:
                 neighbor_count += self.BOARD[loc[0] + 1][loc[1] + 1].lifestate
+            if loc[1] == high_bound:
+                neighbor_count += self.BOARD[loc[0] + 1][0].lifestate
         return neighbor_count
 
     def die_cell(self, board, loc):
@@ -91,7 +108,7 @@ class CreateBoard():
 def main():
     import time
     import os
-    board = CreateBoard(15)
+    board = CreateBoard(30)
     board.generate_board()
     board.draw_board(board.BOARD)
     while True:
